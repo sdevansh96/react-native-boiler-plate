@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { offline, online } from "./src/redux/netInfo/action";
 import AlertComp from "./src/components/common/AlertComp";
 import WarningComp from "./src/components/WarningComp";
+
 const App = () => {
   /***************** Redux Hooks
    */ const dispatch = useDispatch();
