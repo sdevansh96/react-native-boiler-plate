@@ -17,10 +17,12 @@ const App = () => {
 
   /***************** Net handler
    */ const netStatusHandler = () => {
-    if (netStatus.isConnected && netStatus.isInternetReachable) {
-      dispatch(online(netStatus));
-    } else {
-      dispatch(offline());
+    if (netStatus) {
+      if (netStatus.isConnected && netStatus.isInternetReachable) {
+        dispatch(online(netStatus));
+      } else {
+        dispatch(offline());
+      }
     }
   };
   /***************** Use Effect
