@@ -9,22 +9,25 @@ import WarningComp from "./src/components/WarningComp";
 const App = () => {
   /***************** Redux Hooks
    */ const dispatch = useDispatch();
-  /***************** Use Effect
-   */ useEffect(() => {
-    netStatusHandler();
-    console.log("--- -- - - ", netStatus);
-  }, [netStatus]);
+
   /***************** NetInfo
    */ const netStatus = useNetInfo();
   /***************** Header Color
    */ const color = useSelector((state) => state.headerColorReducer);
-  const netStatusHandler = () => {
+
+  /***************** Net handler
+   */ const netStatusHandler = () => {
     if (netStatus.isConnected && netStatus.isInternetReachable) {
       dispatch(online(netStatus));
     } else {
       dispatch(offline());
     }
   };
+  /***************** Use Effect
+   */ useEffect(() => {
+    netStatusHandler();
+    console.log("--- -- - - ", netStatus);
+  }, [netStatus]);
   return (
     <>
       <SafeAreaView style={{ flex: 0, backgroundColor: color }}></SafeAreaView>
