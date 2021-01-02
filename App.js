@@ -16,7 +16,8 @@ const App = () => {
   }, [netStatus]);
   /***************** NetInfo
    */ const netStatus = useNetInfo();
-
+  /***************** Header Color
+   */ const color = useSelector((state) => state.headerColorReducer);
   const netStatusHandler = () => {
     if (netStatus.isConnected && netStatus.isInternetReachable) {
       dispatch(online(netStatus));
@@ -25,14 +26,20 @@ const App = () => {
     }
   };
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" />
-      <MainNavigation />
-      <AlertComp />
-      <View style={{ zIndex: 9999999 }}>
-        <WarningComp />
-      </View>
-    </SafeAreaView>
+    <>
+      <SafeAreaView style={{ flex: 0, backgroundColor: color }}></SafeAreaView>
+      <SafeAreaView style={styles.container}>
+        <StatusBar
+          barStyle={color === colors.black4c ? "light-content" : "dark-content"}
+          backgroundColor={color}
+        />
+        <MainNavigation />
+        <AlertComp />
+        <View style={{ zIndex: 9999999 }}>
+          <WarningComp />
+        </View>
+      </SafeAreaView>
+    </>
   );
 };
 
