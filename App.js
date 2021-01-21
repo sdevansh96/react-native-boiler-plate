@@ -4,8 +4,8 @@ import MainNavigation from "./src/config/navigation/NavigationStack";
 import { useNetInfo } from "@react-native-community/netinfo";
 import { useSelector, useDispatch } from "react-redux";
 import { offline, online } from "./src/redux/netInfo/action";
-import AlertComp from "./src/components/common/AlertComp";
-import WarningComp from "./src/components/WarningComp";
+// import AlertComp from "./src/components/common/AlertComp";
+// import WarningComp from "./src/components/WarningComp";
 
 const App = () => {
   /***************** Redux Hooks
@@ -40,10 +40,6 @@ const App = () => {
           backgroundColor={color}
         />
         <MainNavigation />
-        <AlertComp />
-        <View style={{ zIndex: 9999999 }}>
-          <WarningComp />
-        </View>
       </SafeAreaView>
     </>
   );
