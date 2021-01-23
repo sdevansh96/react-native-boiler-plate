@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -6,24 +6,24 @@ import {
   Dimensions,
   Modal,
   TouchableOpacity,
-} from "react-native";
-import { RFValue } from "react-native-responsive-fontsize";
-import { colors, fonts, images, strings } from "../utils/index";
-import { useDispatch, useSelector } from "react-redux";
-import { hideWarning } from "../redux/warningReducer/action";
-const { width, height } = Dimensions.get("window");
+} from 'react-native';
+import {RFValue} from 'react-native-responsive-fontsize';
+import {colors, fonts, images, strings} from '../../utils/index';
+import {useDispatch, useSelector} from 'react-redux';
+import {hideWarning} from '../../redux/alertReducer/action';
+const {width, height} = Dimensions.get('window');
 
 const AlertComp = (props) => {
   /****************** Dispatch
    */ const dispatch = useDispatch();
-  const { status, text } = useSelector((state) => state.warningReducer);
+  const {status = 'oooo', text} = useSelector((state) => state.alertReducer);
 
   /**************** State
    */ const [show, setShow] = useState(false);
 
   /****************** Effect
    */ useEffect(() => {
-    if (status === true) {
+    if (status !== true) {
       setTimeout(() => setShow(true), 600);
     } else {
       setShow(false);
@@ -35,14 +35,13 @@ const AlertComp = (props) => {
         <View style={styles.container}>
           <View style={styles.subCont}>
             {/************ Heading ************** */}
-            <Text style={styles.topText}>{strings.error}</Text>
+            <Text style={styles.topText}>{'My Error Text'}</Text>
             {/************ Sub Heading ************** */}
-            <Text style={styles.subText}>{text ? text : strings.vpn}</Text>
+            <Text style={styles.subText}>{'Connect to VPN'}</Text>
             {/************ Btn ************** */}
             <TouchableOpacity
               onPress={() => dispatch(hideWarning())}
-              style={styles.btnCont}
-            >
+              style={styles.btnCont}>
               <Text style={[styles.btnText]}>OK</Text>
             </TouchableOpacity>
           </View>
@@ -50,18 +49,18 @@ const AlertComp = (props) => {
       </Modal>
     );
   } else {
-    return null;
+    return <View />;
   }
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    width,
-    height,
-    backgroundColor: "rgba(0, 0, 0, 0.4)",
+    alignItems: 'center',
+    justifyContent: 'center',
+    // width,
+    // height,
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
   },
   subCont: {
     paddingVertical: 12,
@@ -70,25 +69,25 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     borderColor: colors.pearWhite,
-    alignItems: "center",
+    alignItems: 'center',
     backgroundColor: colors.pearWhite,
   },
   topText: {
     fontSize: RFValue(14),
-    fontFamily: fonts.bold,
+    // fontFamily: fonts.bold,
     color: colors.black,
   },
   subText: {
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: RFValue(14),
-    fontFamily: fonts.medium,
+    // fontFamily: fonts.medium,
     color: colors.black,
     paddingVertical: 12,
   },
   btnText: {
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: RFValue(12),
-    fontFamily: fonts.bold,
+    // fontFamily: fonts.bold,
     color: colors.white,
   },
   btnCont: {
@@ -96,8 +95,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.green7f,
     borderRadius: 12,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     width: (width * 85) / 100,
     backgroundColor: colors.green7f,
   },
